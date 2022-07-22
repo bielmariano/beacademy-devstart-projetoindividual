@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('phone');
             $table->string('occupation')->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->integer('is_admin')->nullable();
+            $table->integer('is_admin')->default(0);
             $table->string('cpf')->unique();
             $table->string('password');
             $table->string('image')->nullable();
