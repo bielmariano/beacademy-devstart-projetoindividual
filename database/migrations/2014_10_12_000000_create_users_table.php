@@ -17,9 +17,15 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->date('birthday');
+            $table->string('address');
+            $table->string('phone');
+            $table->string('occupation')->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('cpf', 11)->unique();
+            $table->integer('is_admin')->nullable();
+            $table->string('cpf')->unique();
             $table->string('password');
+            $table->string('image')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
