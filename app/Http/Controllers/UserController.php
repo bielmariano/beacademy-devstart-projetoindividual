@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\RedirectIfAuthenticated;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -42,5 +43,28 @@ class UserController extends Controller
 
         return redirect()->route('users.index');
     }
+
+    public function edit($id)
+    {
+        if(!$user = $this->model->find($id))
+            return redirect()->route('users.index');
+        return view('users.edit', compact('user'));
+        
+    }
+
+    public function update(Request $request, $id)
+    {
+        if(!$user = $this->model->find($id))
+            return redirect()->route('users.index');
+        
+            $data = $request->only('name', 'email', 'birthday', 'address', 'phone', 'occupation', 'cpf');
+            if($request->password)
+            $data['password'] = bcrypt($request->password);
+
+            $user->update($data);
+
+            return redirect()->route('users.index');
+    }
+
 
 }
