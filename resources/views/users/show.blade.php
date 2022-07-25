@@ -28,7 +28,12 @@
       <td>{{$user->occupation}}</td>
       <td>{{$user->cpf}}</td>
       <td>{{date('d/m/Y - H:i', strtotime($user->created_at))}}</td>
-      <td> <a href="{{route('users.edit', $user->id)}}" class="btn btn-warning text-white">Editar</a> <a href="" class="btn btn-danger text-white mt-2"> Excluir</a> </td>
+      <td> <a href="{{route('users.edit', $user->id)}}" class="btn btn-warning text-white">Editar</a></td>
+      <td>  <form action="{{route('users.destroy', $user->id)}}" method="POST">
+        @method('DELETE')
+        @csrf
+        <button class="btn btn-danger text-white">Deletar</button>
+      </form></td>
     </tr>
 
   </tbody>
