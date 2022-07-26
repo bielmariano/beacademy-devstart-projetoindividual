@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Middleware\RedirectIfAuthenticated;
+use App\Http\Requests\StoreUpdateUserFormRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -34,7 +35,7 @@ class UserController extends Controller
         return view('users.create');
     }
 
-    public function store(REQUEST $request)
+    public function store(StoreUpdateUserFormRequest $request)
     {
         $data = $request->all();
         $data['password'] = bcrypt($request->password);
@@ -52,7 +53,7 @@ class UserController extends Controller
         
     }
 
-    public function update(Request $request, $id)
+    public function update(StoreUpdateUserFormRequest $request, $id)
     {
         if(!$user = $this->model->find($id))
             return redirect()->route('users.index');
