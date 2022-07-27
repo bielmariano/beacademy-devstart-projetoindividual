@@ -5,6 +5,7 @@
         <table class="table">
   <thead>
     <tr>
+      <th scope="col">Imagem</th>
       <th scope="col">ID#</th>
       <th scope="col">Nome</th>
       <th scope="col">Email</th>
@@ -15,6 +16,11 @@
   <tbody>
     @foreach($users as $user)
     <tr>
+      @if($user->image)
+      <th> <img src="{{asset('storage/'.$user->image)}}" alt="" width="50px" height="50px"> </th>
+      @else
+      <th> <img src="{{asset('storage/profile/unisexprofile.jpg')}}" alt="" width="50px" height="50px"> </th>
+      @endif
       <th scope="row">{{ $user->id}}</th>
       <td>{{ $user->name}}</td>
       <td>{{$user->email}}</td>
@@ -25,4 +31,9 @@
 
   </tbody>
 </table>
+
+<div class="justify-content-center pagination">
+  {{$users->links('pagination::bootstrap-4')}}
+</div>
+
 @endsection
