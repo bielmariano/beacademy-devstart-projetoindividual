@@ -1,8 +1,27 @@
 @extends('template.users')
 @section('title', 'Lista de Usuários')
 @section('body')
-        <h1>Listagem de Usuários</h1>
-        <table class="table">
+<h1>Listagem de Usuários</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm mt-2 mb-5">
+      <a href="{{ route('users.create') }}" class="btn btn-outline-dark">Novo Usuário</a>
+    </div>
+    <div class="col-sm mt-2 mb-5">
+      <form action="{{ route('users.index') }}" method="GET">
+        <div class="input-group">
+          <input type="search" class="form-control rounded" name="search" />
+          <button type="submit" class="btn btn-outline-primary">Pesquisar</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+
+<table class="table">
   <thead>
     <tr>
       <th scope="col">Imagem</th>
