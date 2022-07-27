@@ -13,7 +13,7 @@
 
 @endif
 
-<form action="{{ route('users.update', $user->id) }}" method="POST">
+<form action="{{ route('users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
     @method('PUT')
   @csrf
   <div class="mb-3">
@@ -48,6 +48,10 @@
   <div class="mb-3">
     <label for="password" class="form-label">Senha</label>
     <input type="password" class="form-control" id="password" name="password">
+  </div>
+  <div class="mb-3">
+    <label for="image" class="form-label">Imagem</label>
+    <input type="file" class="form-control" id="image" name="image">
   </div>
   <button type="submit" class="btn btn-primary">Enviar</button>
 </form>

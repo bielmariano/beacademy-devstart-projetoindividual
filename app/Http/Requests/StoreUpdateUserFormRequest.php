@@ -41,6 +41,9 @@ class StoreUpdateUserFormRequest extends FormRequest
                 'required',
                 'min:4',
                 'max:12'
+            ],
+            'image' => [
+                'file'
             ]
         ];
 
@@ -55,6 +58,9 @@ class StoreUpdateUserFormRequest extends FormRequest
                     'required',
                     'email',
                     'unique:users,email,{$id},id'
+                ],
+                'image' => [
+                    'file'
                 ]
             ];
         }
