@@ -2,7 +2,7 @@
 @section('title', 'Dashboard')
 @section ('body')
 
-<div class="card" style="width: 50rem;">
+<div class="card mx-auto" style="width: 50rem;">
   <img src="{{ asset('storage/construcao.png') }}" class="card-img-top" alt="Dash">
   <div class="card-body">
     <h5 class="card-title">Bem vindo ao Dashboard</h5>
