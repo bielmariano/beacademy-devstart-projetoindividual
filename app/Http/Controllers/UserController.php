@@ -25,11 +25,10 @@ class UserController extends Controller
 
     public function show($id)
     {
-        if(!$user = User::find($id))
+        if (!$user = User::find($id))
             return redirect()->route('users.index');
-        
+
         return view('users.show', compact('user'));
-        
     }
 
     public function create()
@@ -41,60 +40,59 @@ class UserController extends Controller
     {
         $data = $request->all();
         $data['password'] = bcrypt($request->password);
-        
-        if($request->image){
-        $file = $request['image'];
-        $path = $file->store('profile', 'public');
-        $data['image'] = $path;
+
+        if ($request->image) {
+            $file = $request['image'];
+            $path = $file->store('profile', 'public');
+            $data['image'] = $path;
         }
 
         $this->model->create($data);
 
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('create', 'O Usuário foi criado com sucesso! ;)');
     }
 
     public function edit($id)
     {
-        if(!$user = $this->model->find($id))
+        if (!$user = $this->model->find($id))
             return redirect()->route('users.index');
         return view('users.edit', compact('user'));
-        
     }
 
     public function update(StoreUpdateUserFormRequest $request, $id)
     {
-        if(!$user = $this->model->find($id))
+        if (!$user = $this->model->find($id))
             return redirect()->route('users.index');
-        
-            $data = $request->only('name', 'email', 'birthday', 'address', 'phone', 'occupation', 'cpf');
-            if($request->password)
+
+        $data = $request->only('name', 'email', 'birthday', 'address', 'phone', 'occupation', 'cpf', 'is_admin');
+        if ($request->password)
             $data['password'] = bcrypt($request->password);
 
-            if($request->image){
-                $file = $request['image'];
-                $path = $file->store('profile', 'public');
-                $data['image'] = $path;
-                }
+        if ($request->image) {
+            $file = $request['image'];
+            $path = $file->store('profile', 'public');
+            $data['image'] = $path;
+        }
 
-            $user->update($data);
+        $data['is_admin'] = $request->is_admin ? 1 : 0;
 
-            return redirect()->route('users.index');
+        $user->update($data);
+
+        return redirect()->route('users.index')->with('edit', 'O usuário foi atualizado com sucesso! ;)');
     }
 
     public function destroy($id)
     {
-        if(!$user = $this->model->find($id))
+        if (!$user = $this->model->find($id))
             return redirect()->route('users.index');
-        
-            $user->delete();
 
-            return redirect()->route('users.index');
+        $user->delete();
+
+        return redirect()->route('users.index')->with('destroy', 'Usuário foi deletado com sucesso!');
     }
 
     public function admin()
     {
         return view('admin.index');
     }
-
-
 }
