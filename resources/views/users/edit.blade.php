@@ -53,13 +53,14 @@
     <label for="image" class="form-label">Imagem</label>
     <input type="file" class="form-control" id="image" name="image">
   </div>
-  
+  @if(Auth::user()->is_admin == 1)
   <div class="form-check mb-5">
   <input class="form-check-input" type="checkbox" value="1" id="is_admin" name="is_admin">
   <label class="form-check-label" for="is_admin">
     Administrador
   </label>
 </div>
+@endif
 
   <button type="submit" class="btn btn-primary">Enviar</button>
 </form>
