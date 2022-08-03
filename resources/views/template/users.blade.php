@@ -28,7 +28,7 @@
                             <ul class="navbar-nav mr-auto">
                                 @if(Auth::user())
                                     <li class="nav-item">
-                                        <a class="nav-link text-white" href="#">{{ Auth::user()->name }}</a>
+                                        <a class="nav-link text-white" href="{{route('users.show', Auth::user()->id)}}">{{ Auth::user()->name }}</a>
                                     </li>
                                     @if(Auth::user()->is_admin == 1)
                                     <li class="nav-item">
