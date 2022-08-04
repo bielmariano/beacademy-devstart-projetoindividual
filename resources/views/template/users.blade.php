@@ -16,7 +16,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-9">
-                            <ul class="navbar-nav mr-auto">
+                            <ul class="navbar-nav mr-auto" >
                             @if(Auth::user())
                                 <li class="nav-item active">
                                     <a class="nav-link text-white" href="/users">Usuários</a>
